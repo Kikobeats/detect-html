@@ -2,7 +2,7 @@
   "name": "detect-html",
   "description": "It detects HTML markup embed in any string",
   "homepage": "https://github.com/kikobeats/detect-html",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "src/index.js",
   "author": {
     "name": "Kiko Beats",
