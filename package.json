@@ -1,6 +1,6 @@
 {
   "name": "detect-html",
-  "description": "It detects HTML markup embed in any string",
+  "description": "Detect whether a string embeds HTML markup by scanning for tags and common HTML patterns.",
   "homepage": "https://github.com/kikobeats/detect-html",
   "version": "1.0.2",
   "main": "src/index.js",
@@ -19,7 +19,14 @@
   "keywords": [
     "detect",
     "html",
-    "markup"
+    "markup",
+    "tags",
+    "string",
+    "check",
+    "is-html",
+    "parse",
+    "content",
+    "embed"
   ],
   "devDependencies": {
     "@commitlint/cli": "latest",
