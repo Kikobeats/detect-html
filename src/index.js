@@ -73,26 +73,36 @@ module.exports = string => {
         results.push(extractedTag)
         i = tagEnd - 1
       } else {
-        // Regular non-void tag, needs nesting logic
-        const openTag = `<${tagName}`
-        const closeTag = `</${tagName}>`
+        // Regular non-void tag, needs nesting logic.
+        // HTML tag names are case-insensitive; compare accordingly so
+        // `<Script>...</script>` is still detected.
+        const tagNameLower = tagName.toLowerCase()
+        const openLen = tagName.length + 1 // "<" + name
+        const closeLen = tagName.length + 3 // "</" + name + ">"
 
         let nesting = 1
         let k = tagEnd
 
         while (k < length) {
           if (string[k] === '<') {
-            // Check for nested opening tag
+            const isClose = string[k + 1] === '/'
+            const nameStart = isClose ? k + 2 : k + 1
+            const name = string.substr(nameStart, tagName.length)
+
             if (
-              string.substr(k, openTag.length) === openTag &&
-              /\s|>/.test(string[k + openTag.length] || '')
+              !isClose &&
+              name.toLowerCase() === tagNameLower &&
+              /\s|>/.test(string[k + openLen] || '')
             ) {
               nesting++
-              k += openTag.length
-              // Check for matching closing tag
-            } else if (string.substr(k, closeTag.length) === closeTag) {
+              k += openLen
+            } else if (
+              isClose &&
+              name.toLowerCase() === tagNameLower &&
+              string[nameStart + tagName.length] === '>'
+            ) {
               nesting--
-              k += closeTag.length
+              k += closeLen
 
               if (nesting === 0) {
                 const extractedTag = string.substring(i, k)
