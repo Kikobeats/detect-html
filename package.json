@@ -2,7 +2,7 @@
   "name": "detect-html",
   "description": "Detect whether a string embeds HTML markup by scanning for tags and common HTML patterns.",
   "homepage": "https://github.com/kikobeats/detect-html",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "src/index.js",
   "author": {
     "name": "Kiko Beats",
