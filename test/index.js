@@ -16,6 +16,17 @@ test('detect HTML tags inside a string', t => {
   ])
 })
 
+test('detect HTML tags with mismatched tag name casing', t => {
+  let data = randomBytes(100).toString('base64')
+  data += "<Script>console.log('lol')</script>"
+  data += '<Div class="x">Content</div>'
+  data += randomBytes(100).toString('base64')
+  t.deepEqual(detectHtml(data), [
+    "<Script>console.log('lol')</script>",
+    '<Div class="x">Content</div>'
+  ])
+})
+
 test('detect multiple HTML tags with no nesting', t => {
   let data = randomBytes(100).toString('base64')
   data += '<div>Content</div><span>Text</span>'
