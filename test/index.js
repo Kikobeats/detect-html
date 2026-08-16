@@ -1,7 +1,7 @@
 'use strict'
 
 const { randomBytes } = require('crypto')
-const test = require('ava')
+const test = require('ava').default
 
 const detectHtml = require('..')
 
